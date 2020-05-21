@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FirebaseChat</string>
+    <string name="textview1">TextView1</string>
+    <string name="textview2">TextView2</string>
+    <string name="textview3">TextView3</string>
+    <string name="textview4">TextView4</string>
+    <string name="button">SEND</string>
+    <string name="name" />
+    <string name="sign_out">Sign out</string>
+</resources>
