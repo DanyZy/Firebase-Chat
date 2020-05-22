@@ -17,11 +17,13 @@ import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import android.text.format.DateFormat;
 
@@ -63,8 +65,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayChat() {
         ListView listMessages = (ListView) findViewById(R.id.listView);
-        adapter = new FirebaseListAdapter<Message>(this, Message.class, R.layout.item,
-                FirebaseDatabase.getInstance().getReference()) {
+        FirebaseListOptions<Message> options = new FirebaseListOptions.Builder<Message>()
+                .setLifecycleOwner(this)
+                .setQuery(FirebaseDatabase.getInstance().getReference(), Message.class)
+                .setLayout(R.layout.item)
+                .build();
+        adapter = new FirebaseListAdapter<Message>(options) {
             @Override
             protected void populateView(View v, Message model, int position) {
                 TextView textMessage, author, timeMessage;
